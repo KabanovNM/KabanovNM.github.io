@@ -1,5 +1,8 @@
 <template>
-  <div class="dropdown-list">
+  <div
+    v-click-outside="clickOutside"
+    class="dropdown-list"
+  >
     <div
       :class="{ active: optionsVisible }"
       class="dropdown-list__input"
@@ -81,6 +84,12 @@ export default {
       this.$emit('input', option.key);
 
       this.toggleOptionsVisible();
+    },
+
+    clickOutside() {
+      if (this.optionsVisible) {
+        this.toggleOptionsVisible();
+      }
     },
   },
 };
